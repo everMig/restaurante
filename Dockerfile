@@ -46,6 +46,9 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN echo '#!/bin/bash\n\
 set -e\n\
 \n\
+# Eliminar .env si se subió por error para que Render use sus variables\n\
+rm -f /var/www/html/.env\n\
+\n\
 # Configurar puerto dinámico para Apache\n\
 sed -i "s/80/${PORT}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf\n\
 \n\
@@ -61,8 +64,10 @@ if [[ $APP_KEY != base64:* ]]; then\n\
   export APP_KEY=$(cat /tmp/app_key)\n\
 fi\n\
 \n\
-# Limpiar caches antiguos\n\
+# Limpiar todo antes de cachear\n\
 php artisan config:clear\n\
+php artisan route:clear\n\
+php artisan view:clear\n\
 \n\
 # Migrar y sembrar base de datos\n\
 php artisan migrate --force --seed\n\
