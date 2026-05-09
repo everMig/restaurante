@@ -4,7 +4,7 @@
 # Stack: PHP 8.3 + Apache + Node.js 20 (build) + SQLite
 # =============================================================================
 
-FROM php:8.3-apache
+FROM php:8.4-apache
 
 # --- 1. Dependencias del sistema ---
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -46,6 +46,9 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN echo '#!/bin/bash\n\
 set -e\n\
 \n\
+# Configurar puerto dinámico para Apache\n\
+sed -i "s/80/${PORT}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf\n\
+\n\
 # Crear SQLite si no existe\n\
 touch /var/www/html/database/database.sqlite\n\
 chown www-data:www-data /var/www/html/database/database.sqlite\n\
@@ -67,8 +70,5 @@ php artisan migrate --force --seed\n\
 apache2-foreground\n\
 ' > /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
 
-# --- 10. Puerto y arranque ---
-EXPOSE 10000
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
-
+# --- 10. Arranque ---
 CMD ["/usr/local/bin/start.sh"]
