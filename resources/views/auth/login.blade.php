@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Restaurante POS</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @viteReactRefresh
     @vite(['resources/css/tailwind.css', 'resources/css/app.scss', 'resources/js/app.js'])
 </head>
