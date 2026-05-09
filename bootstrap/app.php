@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         
-        // 1. Middleware Globales o Web (Aquí va la Zona Horaria)
+        // 1. Middleware Globales o Web
+        $middleware->trustProxies(at: '*');
+        
         $middleware->web(append: [
             \App\Http\Middleware\SetTimezone::class,
         ]);
