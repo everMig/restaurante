@@ -1,0 +1,36 @@
+# =============================================================================
+# render.yaml - Blueprint de Render.com
+# =============================================================================
+# Este archivo permite hacer deploy automático con un click desde el dashboard
+# de Render.com conectando tu repositorio de GitHub.
+# =============================================================================
+
+services:
+  - type: web
+    name: restaurante-pos
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: APP_NAME
+        value: "Restaurante POS"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        value: https://restaurante-pos.onrender.com
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: CACHE_STORE
+        value: array
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: PORT
+        value: "10000"

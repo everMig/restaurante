@@ -1,0 +1,42 @@
+# Render.com Docker
+Dockerfile
+
+# Archivos de entorno
+.env
+.env.backup
+
+# Dependencias (se instalan en el build)
+/node_modules
+/vendor
+
+# Carpetas de IDE y agentes AI
+.cursor/
+.gemini/
+.claude/
+.codex/
+.amp/
+.agents/
+.vscode/
+.idea/
+
+# Archivos de documentación del proyecto (no necesarios en deploy)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+AUDITORIA_SENIOR.md
+COTIZACION.md
+FASE_*.md
+PLAN_MIGRACION_REACT.md
+
+# Archivos de base de datos locales
+database/database.sqlite
+bk_basededatos.sql
+script_limpiartodo.sql
+
+# Testing
+.phpunit.result.cache
+phpunit.xml
+
+# Otros
+.mcp.json
+boost.json

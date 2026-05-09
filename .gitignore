@@ -37,19 +37,3 @@ COTIZACION.md
 AUDITORIA_SENIOR.md
 FASE_*.md
 PLAN_MIGRACION_REACT.md
-# Archivos de IA y asistentes
-.agents/
-.amp/
-.claude/
-.codex/
-.cursor/
-.gemini/
-.mcp.json
-AGENTS.md
-CLAUDE.md
-GEMINI.md
-COTIZACION.md
-AUDITORIA_SENIOR.md
-FASE_*.md
-PLAN_MIGRACION_REACT.md
-EOF
