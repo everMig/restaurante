@@ -39,8 +39,8 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm ci && npm run build && rm -rf node_modules
 
 # --- 8. Permisos para Laravel ---
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 # --- 9. Crear script de inicio ---
 RUN echo '#!/bin/bash\n\
@@ -49,22 +49,28 @@ set -e\n\
 # Configurar puerto dinámico para Apache\n\
 sed -i "s/80/${PORT}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf\n\
 \n\
-# Crear SQLite si no existe\n\
+# Crear SQLite si no existe y dar permisos\n\
+mkdir -p /var/www/html/database\n\
 touch /var/www/html/database/database.sqlite\n\
-chown www-data:www-data /var/www/html/database/database.sqlite\n\
+chown -R www-data:www-data /var/www/html/database\n\
+chmod -R 775 /var/www/html/database\n\
 \n\
-# Generar APP_KEY si no existe\n\
-if [ -z "$APP_KEY" ]; then\n\
-  php artisan key:generate --force\n\
+# Forzar generación de APP_KEY si no empieza con base64\n\
+if [[ $APP_KEY != base64:* ]]; then\n\
+  php artisan key:generate --force --show > /tmp/app_key\n\
+  export APP_KEY=$(cat /tmp/app_key)\n\
 fi\n\
 \n\
-# Cachear configuración para producción\n\
-php artisan config:cache\n\
-php artisan route:cache\n\
-php artisan view:cache\n\
+# Limpiar caches antiguos\n\
+php artisan config:clear\n\
 \n\
 # Migrar y sembrar base de datos\n\
 php artisan migrate --force --seed\n\
+\n\
+# Cachear para producción\n\
+php artisan config:cache\n\
+php artisan route:cache\n\
+php artisan view:cache\n\
 \n\
 # Iniciar Apache\n\
 apache2-foreground\n\
