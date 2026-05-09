@@ -1,0 +1,270 @@
+// Removed Bootstrap
+
+// Estilos personalizados para el Dashboard
+body {
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+
+// Barra Lateral (Sidebar)
+.sidebar {
+    min-height: 100vh;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    z-index: 100;
+    
+    .nav-link {
+        color: #333;
+        padding: 12px 20px;
+        font-weight: 500;
+        
+        &:hover {
+            background-color: #e9ecef;
+            color: #0d6efd; // Azul Bootstrap
+        }
+        
+        &.active {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+            border-right: 3px solid #0d6efd;
+        }
+        
+        i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+    }
+}
+
+// Contenido Principal
+.main-content {
+    width: 100%;
+    padding: 20px;
+}
+
+// Tarjetas Dashboard
+.card-dashboard {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+    
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.react-pulse-shell {
+    margin-bottom: 2rem;
+}
+
+.react-pulse-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.95fr);
+}
+
+.react-pulse-hero,
+.react-pulse-chart-card {
+    border-radius: 28px;
+    box-shadow: 0 18px 40px -22px rgba(15, 23, 42, 0.28);
+}
+
+.react-pulse-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 1.75rem;
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 28%),
+        linear-gradient(135deg, #312e81 0%, #4338ca 40%, #0f766e 100%);
+    color: #fff;
+}
+
+.react-pulse-hero::after {
+    position: absolute;
+    inset: auto -5rem -5rem auto;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    content: '';
+}
+
+.react-pulse-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 34rem;
+}
+
+.react-pulse-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.react-pulse-copy h2 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.8rem, 2vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.react-pulse-copy p {
+    max-width: 36rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.react-pulse-metrics {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.react-pulse-metric-card {
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.react-pulse-metric-card span,
+.react-pulse-chart-card p {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.82rem;
+}
+
+.react-pulse-metric-card strong {
+    display: block;
+    margin: 0.35rem 0;
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.react-pulse-metric-card small {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.react-pulse-metric-alert {
+    background: rgba(190, 24, 93, 0.22);
+}
+
+.react-pulse-chart-card {
+    padding: 1.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+}
+
+.react-pulse-chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.react-pulse-chart-header .react-pulse-kicker {
+    color: #4338ca;
+    border-color: rgba(67, 56, 202, 0.18);
+    background: rgba(67, 56, 202, 0.08);
+}
+
+.react-pulse-chart-header h3 {
+    margin: 0.15rem 0 0;
+    color: #0f172a;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.react-pulse-chart-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.86rem;
+}
+
+.react-pulse-chart-bars {
+    display: grid;
+    align-items: end;
+    gap: 0.75rem;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    min-height: 16rem;
+}
+
+.react-pulse-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    height: 100%;
+}
+
+.react-pulse-bar-value,
+.react-pulse-bar-label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.react-pulse-bar-value {
+    color: #475569;
+}
+
+.react-pulse-bar-label {
+    color: #64748b;
+}
+
+.react-pulse-bar-track {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    padding: 0.5rem 0;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(226, 232, 240, 0.5) 0%, rgba(226, 232, 240, 0.18) 100%);
+}
+
+.react-pulse-bar-fill {
+    width: 100%;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #14b8a6 0%, #4f46e5 100%);
+    box-shadow: 0 10px 18px -12px rgba(79, 70, 229, 0.8);
+    transition: height 220ms ease;
+}
+
+@media (max-width: 1199px) {
+    .react-pulse-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .react-pulse-hero,
+    .react-pulse-chart-card {
+        padding: 1.25rem;
+        border-radius: 24px;
+    }
+
+    .react-pulse-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .react-pulse-chart-bars {
+        gap: 0.5rem;
+        min-height: 13rem;
+    }
+}
